@@ -24,7 +24,7 @@
               inherit system;
             };
             electron = pkgs.electron_43;
-            buildInputs =
+            compilationPkgs =
               [
                 electron
                 pkgs.nodejs_24
@@ -33,12 +33,15 @@
                 pkgs.cargo
               ]
               ++ pkgs.lib.optional pkgs.stdenv.hostPlatform.isDarwin pkgs.apple-sdk;
+
+            buildInputs = pkgs.lib.optional pkgs.stdenv.hostPlatform.isLinux pkgs.bubblewrap;
           }
       );
 
     apache-maka = {
       pkgs,
       electron,
+      compilationPkgs,
       buildInputs,
       ...
     }:
@@ -52,7 +55,7 @@
         };
 
         nativeBuildInputs =
-          buildInputs
+          compilationPkgs
           ++ [
             pkgs.rustPlatform.cargoSetupHook
             pkgs.makeWrapper
@@ -60,6 +63,8 @@
           ];
 
         npmDepsHash = "sha256-uk7emVa4eI5O5WvfRKjPQD3FuWV1JwLG5Az6gF+kWDM=";
+
+        inherit buildInputs;
 
         env = {
           ELECTRON_SKIP_BINARY_DOWNLOAD = 1;
@@ -121,7 +126,7 @@
 
           install -m 444 -D $out/share/resources/assets/icon.png \
             $out/share/icons/hicolor/512x512/apps/apache-maka.png
-          
+
           runHook postInstall
         '';
 
@@ -156,6 +161,7 @@
     devShells = forAllSystems ({
       pkgs,
       electron,
+      compilationPkgs,
       buildInputs,
       ...
     }: {
@@ -166,7 +172,7 @@
         shellHook = ''
           npm ci
         '';
-        packages = buildInputs;
+        packages = compilationPkgs ++ buildInputs;
       };
     });
 
