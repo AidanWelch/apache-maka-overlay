@@ -56,6 +56,7 @@
           ++ [
             pkgs.rustPlatform.cargoSetupHook
             pkgs.makeWrapper
+            pkgs.copyDesktopItems
           ];
 
         npmDepsHash = "sha256-uk7emVa4eI5O5WvfRKjPQD3FuWV1JwLG5Az6gF+kWDM=";
