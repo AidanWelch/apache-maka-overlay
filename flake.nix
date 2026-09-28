@@ -120,7 +120,7 @@
             --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 
           install -m 444 -D $out/share/resources/assets/icon.png \
-            $out/share/icons/hicolor/1024x1024/apps/apache-maka.png
+            $out/share/icons/hicolor/512x512/apps/apache-maka.png
           
           runHook postInstall
         '';
