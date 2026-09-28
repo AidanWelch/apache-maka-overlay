@@ -110,6 +110,8 @@
         '';
 
         installPhase = ''
+          runHook preInstall
+
           mkdir -p $out/share
           cp -r apps/desktop/release/*-unpacked/{locales,resources{,.pak}} $out/share
 
@@ -119,6 +121,8 @@
 
           install -m 444 -D $out/share/resources/assets/icon.png \
             $out/share/icons/hicolor/1024x1024/apps/apache-maka.png
+          
+          runHook postInstall
         '';
 
         desktopItems = [
