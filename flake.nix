@@ -81,6 +81,11 @@
           };
         };
 
+        postPatch = ''
+          substituteInPlace packages/runtime/src/sandbox/linux-capability.ts \
+            --replace-fail "/usr/bin/bwrap" "${pkgs.bubblewrap}/bin/bwrap"
+        '';
+
         buildPhase = ''
           node scripts/apply-dependency-patches.mjs
 
