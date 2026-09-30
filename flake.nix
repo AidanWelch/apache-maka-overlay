@@ -34,7 +34,10 @@
               ]
               ++ pkgs.lib.optional pkgs.stdenv.hostPlatform.isDarwin pkgs.apple-sdk;
 
-            buildInputs = pkgs.lib.optional pkgs.stdenv.hostPlatform.isLinux pkgs.bubblewrap;
+            buildInputs = pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+              pkgs.bubblewrap
+              pkgs.coreutils
+            ];
           }
       );
 
@@ -83,7 +86,8 @@
 
         postPatch = ''
           substituteInPlace packages/runtime/src/sandbox/linux-capability.ts \
-            --replace-fail "/usr/bin/bwrap" "${pkgs.bubblewrap}/bin/bwrap"
+            --replace-fail "/usr/bin/bwrap" "${pkgs.bubblewrap}/bin/bwrap" \
+            --replace-fail "/bin/true" "${pkgs.coreutils}/bin/true"
         '';
 
         buildPhase = ''
