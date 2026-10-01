@@ -1,0 +1,35 @@
+# partially copied from https://github.com/Cloudef/zig2nix/blob/master/.github/workflows/automation.yml
+name: update
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: write
+
+    steps:
+      - run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - uses: actions/checkout@v7
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          determinate: true
+      - uses: DeterminateSystems/flakehub-cache-action@main
+      - run: |
+          nix flake update
+          nix run nixpkgs#nix-update -- --flake -u apache-maka
+          nix flake check --keep-going
+      - uses: test-room-7/action-update-file@v2.1.0
+        with:
+          branch: ${{ github.head_ref || github.ref_name }}
+          file-path: |
+            flake.lock
+            flake.nix
+          commit-msg: Automatic update
+          github-token: ${{ secrets.GITHUB_TOKEN }}
