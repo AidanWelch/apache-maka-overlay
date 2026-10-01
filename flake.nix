@@ -50,12 +50,12 @@
     }:
       pkgs.buildNpmPackage (finalAttrs: rec {
         pname = "apache-maka";
-        version = "deps-v8-150.4.0-35e4d3471";
+        version = "deps-v8-150.4.0-35e4d3471-unstable-2026-10-01";
         src = pkgs.fetchFromGitHub {
           owner = "apache";
           repo = "maka";
-          rev = "542f04a4f328de7a49b96e5146f391fb923fa369";
-          hash = "sha256-RiQ+AeKAXWHYyP0jPARNDnOgJPKf1gC4/4vZ++XbXF8=";
+          rev = "57964425a0fa968c72f6b8d31ad9b16ddfae0eea";
+          hash = "sha256-6MvgCmGAvwna+DGmFVzU9CiMCesyRw3aCX5UyfsoqtE=";
         };
 
         nativeBuildInputs =
@@ -66,7 +66,7 @@
             pkgs.copyDesktopItems
           ];
 
-        npmDepsHash = "sha256-uk7emVa4eI5O5WvfRKjPQD3FuWV1JwLG5Az6gF+kWDM=";
+        npmDepsHash = "sha256-eqfWBqd62xXt/YrqyKXFkMIJlzr6NlwOuyGtwq50Jx4=";
 
         inherit buildInputs;
 
@@ -151,7 +151,8 @@
         ];
 
         passthru.updateScript = pkgs.nix-update-script {
-          extraArgs = ["--version=branch"];
+          extraArgs = ["--flake" "--version=branch"];
+          attrPath = "apache-maka";
         };
       });
   in {
