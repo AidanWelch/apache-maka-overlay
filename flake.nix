@@ -49,7 +49,8 @@
       ...
     }:
       pkgs.buildNpmPackage (finalAttrs: rec {
-        name = "apache-maka";
+        pname = "apache-maka";
+        version = "deps-v8-150.4.0-35e4d3471";
         src = pkgs.fetchFromGitHub {
           owner = "apache";
           repo = "maka";
@@ -148,6 +149,10 @@
             categories = ["Development" "IDE"];
           })
         ];
+
+        passthru.updateScript = pkgs.nix-update-script {
+          extraArgs = ["--version=branch"];
+        };
       });
   in {
     packages = forAllSystems (args: {
