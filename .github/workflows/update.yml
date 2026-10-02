@@ -25,6 +25,7 @@ jobs:
           nix flake update
           nix run nixpkgs#nix-update -- --flake -u apache-maka
           nix flake check --keep-going
+          nix build . 
       - uses: test-room-7/action-update-file@v2.1.0
         with:
           branch: ${{ github.head_ref || github.ref_name }}
