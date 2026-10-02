@@ -50,12 +50,12 @@
     }:
       pkgs.buildNpmPackage (finalAttrs: rec {
         pname = "apache-maka";
-        version = "deps-v8-150.4.0-35e4d3471-unstable-2026-10-01";
+        version = "deps-v8-150.4.0-35e4d3471-unstable-2026-10-02";
         src = pkgs.fetchFromGitHub {
           owner = "apache";
           repo = "maka";
-          rev = "57964425a0fa968c72f6b8d31ad9b16ddfae0eea";
-          hash = "sha256-6MvgCmGAvwna+DGmFVzU9CiMCesyRw3aCX5UyfsoqtE=";
+          rev = "6d19e2f176443fa06201ed8a83d786cdb75aaa07";
+          hash = "sha256-UPPu0PtVP0ayQ4MloW43qUJ5ErJgfyFEJyvWD2WMHC0=";
         };
 
         nativeBuildInputs =
@@ -66,7 +66,7 @@
             pkgs.copyDesktopItems
           ];
 
-        npmDepsHash = "sha256-eqfWBqd62xXt/YrqyKXFkMIJlzr6NlwOuyGtwq50Jx4=";
+        npmDepsHash = "sha256-aXoHCF7EaFGfYU/dzBv/NILHBQGP3sLep15qr8Yklaw=";
 
         inherit buildInputs;
 
