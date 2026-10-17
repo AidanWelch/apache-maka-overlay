@@ -54,8 +54,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "apache";
           repo = "maka";
-          rev = "a91a9adc8feb806eb183bdd380e8c348f6920b82";
-          hash = "sha256-i+kof/TGqQ1IWFgNd0qBB4sAjIP30HUpyRPqzJ5IZK4=";
+          rev = "2c42907728ba4a53fd1dacf66e3083793b3b6d6b";
+          hash = "sha256-85MkJjdzdA4EuhewuzW560ufYWqX5DeIeoQFVouPtDs=";
         };
 
         nativeBuildInputs =
