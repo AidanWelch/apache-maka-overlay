@@ -54,8 +54,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "apache";
           repo = "maka";
-          rev = "a509747d6779b27ee60e4d1ff044bc6ba8fcc5ca";
-          hash = "sha256-LTtF3lkbPcwv7Bx/tRogbI5zDM3FGbp6ASIgJYCbMTE=";
+          rev = "15d0a0dd19d39e2bc09ae35940e432c636982315";
+          hash = "sha256-lG5IAHPwvaZha18qfAFUKnmhctc2eNzlgOHYbiq8iQE=";
         };
 
         nativeBuildInputs =
@@ -66,7 +66,7 @@
             pkgs.copyDesktopItems
           ];
 
-        npmDepsHash = "sha256-+744dj4/dkxBuXhtpXYAInhNptK2UgJ15ObC5cAyKPg=";
+        npmDepsHash = "sha256-3QlrlK6lbzUINEoQCu/WyhHJbmM0vu8vMpsim9DiM1c=";
 
         inherit buildInputs;
 
