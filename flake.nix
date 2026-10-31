@@ -50,12 +50,12 @@
     }:
       pkgs.buildNpmPackage (finalAttrs: rec {
         pname = "apache-maka";
-        version = "0.2.2-incubating-rc2-unstable-2026-10-29";
+        version = "0.2.2-incubating-rc2-unstable-2026-10-30";
         src = pkgs.fetchFromGitHub {
           owner = "apache";
           repo = "maka";
-          rev = "8dd205bab4792ce03193a1ddce5dea094cc3dd87";
-          hash = "sha256-0wGQsMWWokgP/Po9oTdsgyNbVQWIN1ys8ybr42FX20U=";
+          rev = "85a1031c10d104456127f35aac1523b9ffb1a384";
+          hash = "sha256-qOKERWR4e9oXtcuNrn/T4PAJN30qVT7Kt5tSwBFqv7A=";
         };
 
         nativeBuildInputs =
